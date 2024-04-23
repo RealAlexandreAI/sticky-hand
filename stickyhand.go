@@ -16,7 +16,7 @@ import (
 	"github.com/tidwall/sjson"
 )
 
-const summarizePrompt =`
+const summarizePrompt = `
 Employing the ICIO framework, the following Few-shot instruction is structured as follows:
 
 **Instruction (I)**:

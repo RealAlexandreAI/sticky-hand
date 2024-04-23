@@ -12,8 +12,7 @@ import (
 func TestScrapeURL(t *testing.T) {
 	rst, err := ScrapeURL("https://en.wikipedia.org/wiki/Scrape",
 		WithHTML(), WithMarkdown(),
-		WithSummary(), WithText(), WithTranslation(),
-		WithWebpageCapture())
+		WithSummary(), WithText(), WithTranslation())
 
 	assert.NoError(t, err)
 	assert.Equal(t, gjson.Get(rst, "metadata.title").String(), "Scrape")
