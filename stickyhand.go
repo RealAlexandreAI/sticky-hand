@@ -86,7 +86,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			rst, _ = sjson.Set(rst, "capture", base64Str)
 		}
 
-		if (scraper.summary || scraper.keywords) && scraper.llmClient != nil {
+		if scraper.summary && scraper.llmClient != nil {
 
 			prompt := string(summarizePrompt) + gjson.Get(rst, "markdown").String()
 
@@ -141,7 +141,6 @@ type outputConfig struct {
 	html        bool
 	capture     bool
 	summary     bool
-	keywords    bool
 	translation bool
 }
 
@@ -197,16 +196,6 @@ func WithSummary() Option {
 	}
 }
 
-// WithKeywords
-//
-//	@Description:
-//	@return Option
-func WithKeywords() Option {
-	return func(scraper *StickyHand) {
-		scraper.keywords = true
-	}
-}
-
 // WithTranslation
 //
 //	@Description:
@@ -229,7 +218,10 @@ func WithLLMProvider(endpoint string, apiKey string) Option {
 		scraper.llmAPIKey = apiKey
 
 		config := openai.DefaultConfig(apiKey)
-		config.BaseURL = endpoint
+
+		if endpoint != "" {
+			config.BaseURL = endpoint
+		}
 
 		c := openai.NewClientWithConfig(config)
 		scraper.llmClient = c

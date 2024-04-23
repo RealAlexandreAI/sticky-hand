@@ -46,6 +46,11 @@
   </p>
 </div>
 
+
+<!-- ABOUT THE PROJECT -->
+## ✋ Fetch webpage content into structured text using crawlers or AI as your want.
+
+
 ### 🌟 Reasons to Choose ticky-hand
 
 - 🛡️ Simplicity and Security: sticky-hand ensures ease of use and data security with its straightforward interface and robust data handling mechanisms.
@@ -54,12 +59,8 @@
 - 🕷️ Traditional Web Scraping Support: Supports traditional web scraping techniques for reliably capturing the data you need.
 - 🤖 AI-Assisted Summarization: Incorporates AI technology to assist in intelligent recognition and summarization of data, enhancing the accuracy and efficiency of data extraction.
 - 📐 Terminal CLI Support: The feature can also be used in the command-line and can be chained with command pipes.
-- ⚙️ No Anxiety About Error: json-repair always gives the string result.
 - 🌱 Continuous Updates: We are committed to continuously updating and improving sticky-hand, with more exciting features to come in the future.
 
-
-<!-- ABOUT THE PROJECT -->
-## ✋ Fetch webpage content into structured text using crawlers or AI as your want.
 
 
 <!-- GETTING STARTED -->
@@ -82,16 +83,14 @@ import (
 )
 
 func main() {
-    // broken JSON string from LLM
 	stickyhand.ScrapeURL("https://en.wikipedia.org/wiki/Scrape",
-		stickyhand.WithHTML(), stickyhand.WithKeywords(), stickyhand.WithMarkdown(),
-		stickyhand.WithSummary(), stickyhand.WithText(), stickyhand.WithTranslation(),
-		stickyhand.WithWebpageCapture(),
+		stickyhand.WithHTML(), stickyhand.WithMarkdown(), stickyhand.WithSummary(),
+		stickyhand.WithText(), stickyhand.WithTranslation(), stickyhand.WithWebpageCapture(),
 		stickyhand.WithLLMProvider("https://<llm-provider>/v1", "sk-xxxxx"))
 }
 ```
 
-output:
+### Output
 
 ```json
 {
@@ -113,6 +112,12 @@ output:
 
 ```
 
+### Parameter
+
+
+TODO
+
+
 
 
 _For more examples, please refer to the [Test Cases](https://github.com/RealAlexandreAI/sticky-hand/blob/master/main_test.go) Or <a href="https://goplay.tools/snippet/tKNwcBIsAMV">Online Playground</a>_
@@ -124,14 +129,10 @@ _For more examples, please refer to the [Test Cases](https://github.com/RealAlex
 
 ```bash
 
-brew install realalexandreai/tap-jsonrepair/jsonrepair
+brew install realalexandreai/tap-stickyhand/stickyhand
 
-# from raw string
-jsonrepair -i "{'employees':['John', 'Anna', "
-# output: {"employees":["John", "Anna", "Peter"]}
+TODO 
 
-# from file
-jsonrepair -f <json-file>.json
 ```
 
 _You can also download binary from Release, please refer to the [Releases](https://github.com/RealAlexandreAI/sticky-hand/releases)._
@@ -140,13 +141,9 @@ _You can also download binary from Release, please refer to the [Releases](https
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Convert project from Python
-- [x] Minimum Go version
-- [x] Cover test cases
-- [x] Terminal CLI support
-- [x] Workflow and GitHub Action
-- [x] Add Homebrew tap
-- [ ] Support Full-width character detection
+- [x] TODO 
+- [x] 
+- [ ] headless browser for complex scenario
 
 See the [open issues](https://github.com/RealAlexandreAI/sticky-hand/issues) for a full list of proposed features (and known issues).
 
