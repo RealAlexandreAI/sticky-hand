@@ -11,7 +11,7 @@ import (
 
 func TestScrapeURL(t *testing.T) {
 	rst, err := ScrapeURL("https://en.wikipedia.org/wiki/Scrape",
-		WithHTML(), WithKeywords(), WithMarkdown(),
+		WithHTML(), WithMarkdown(),
 		WithSummary(), WithText(), WithTranslation(),
 		WithWebpageCapture())
 

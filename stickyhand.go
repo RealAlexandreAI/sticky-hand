@@ -2,7 +2,6 @@ package stickyhand
 
 import (
 	"context"
-	_ "embed"
 	"encoding/base64"
 	"fmt"
 	"time"
@@ -17,8 +16,55 @@ import (
 	"github.com/tidwall/sjson"
 )
 
-//go:embed prompts/summarize.prompt
-var summarizePrompt []byte
+const summarizePrompt =`
+Employing the ICIO framework, the following Few-shot instruction is structured as follows:
+
+**Instruction (I)**:
+Analyze the provided text and generate a JSON output that includes a title, a detailed summary, and a list of identified keywords.
+
+**Content (C)**:
+The passage for analysis will be presented below.
+
+**Intent (I)**:
+The aim is to identify the primary themes, insights, and specific keywords within the text, and to produce a title that succinctly represents the text's main idea, along with a detailed summary that encapsulates its comprehensive essence, with emphasis on the identified keywords.
+
+**Output (O)**:
+The expected output is in JSON format, with the following structure:
+
+{
+  "title": "A concise title that reflects the text's central theme",
+  "keywords": ["Keyword1", "Keyword2", "Keyword3"], // List of identified keywords
+  "detailed": "An extensive summary that elaborates on the text's content in detail, incorporating the identified keywords"
+}
+
+Examples:
+Below are examples illustrating the creation of a title, a detailed summary, and the identification of keywords from given text samples.
+
+Example 1:
+{
+  "text": "Insert the content of example text 1 here...",
+  "output": {
+    "title": "Example Title 1",
+    "keywords": ["Key1", "Concept1", "Theme1"],
+    "detailed": "Example detailed summary for text 1, highlighting the presence and relevance of Key1, Concept1, and Theme1..."
+  }
+}
+
+Example 2:
+{
+  "text": "Insert the content of example text 2 here...",
+  "output": {
+    "title": "Example Title 2",
+    "keywords": ["Key2", "Idea2", "Topic2"],
+    "detailed": "Example detailed summary for text 2, providing an in-depth overview and emphasizing Key2, Idea2, and Topic2..."
+  }
+}
+
+The text to be processed is located below the line.
+
+---
+
+`
 
 // ScrapeURL
 //
@@ -38,7 +84,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 
 		article, err := readability.FromURL(url, timeout)
 		if err != nil {
-			return fmt.Errorf("readability failed to parse %s, %v\n", url, err)
+			return fmt.Errorf("readability failed to parse %s, %v", url, err)
 		}
 
 		rst, _ = sjson.Set(rst, "metadata.title", article.Title)
@@ -58,7 +104,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			converter := md.NewConverter("", true, nil)
 			markdown, err := converter.ConvertString(article.Content)
 			if err != nil {
-				return fmt.Errorf("failed to html-to-markdown %s, %v\n", url, err)
+				return fmt.Errorf("failed to html-to-markdown %s, %v", url, err)
 			}
 
 			rst, _ = sjson.Set(rst, "markdown", markdown)
@@ -88,7 +134,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 
 		if scraper.summary && scraper.llmClient != nil {
 
-			prompt := string(summarizePrompt) + gjson.Get(rst, "markdown").String()
+			prompt := summarizePrompt + gjson.Get(rst, "markdown").String()
 
 			resp, err := scraper.llmClient.CreateChatCompletion(
 				ctx,
@@ -103,7 +149,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				},
 			)
 			if err != nil {
-				return fmt.Errorf("ChatCompletion error: %v\n", err)
+				return fmt.Errorf("ChatCompletion error: %v", err)
 			}
 
 			summary := resp.Choices[0].Message.Content
@@ -115,7 +161,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 		return nil
 	})
 
-	return rst, lo.Ternary(ok, nil, fmt.Errorf("failed to scrape %s, %v\n", url, errS))
+	return rst, lo.Ternary(ok, nil, fmt.Errorf("failed to scrape %s, %v", url, errS))
 }
 
 // StickyHand
