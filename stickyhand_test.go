@@ -17,8 +17,6 @@ func TestScrapeURL(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Contains(t, gjson.Get(rst, "metadata.title").String(), "hand")
 	assert.True(t, gjson.Get(rst, "metadata.siteName").String() != "")
-
-	fmt.Println(gjson.Get(rst, "metadata.length").Int())
 	assert.Greater(t, gjson.Get(rst, "metadata.length").Int(), int64(0))
 	assert.True(t, gjson.Get(rst, "text").String() != "")
 	assert.True(t, gjson.Get(rst, "html").String() != "")
