@@ -85,7 +85,7 @@ import (
 func main() {
 	stickyhand.ScrapeURL("https://en.wikipedia.org/wiki/Scrape",
 		stickyhand.WithHTML(), stickyhand.WithMarkdown(), stickyhand.WithSummary(),
-		stickyhand.WithText(), stickyhand.WithTranslation(), stickyhand.WithWebpageCapture(),
+		stickyhand.WithText(), stickyhand.WithTranslation("Japanese"), stickyhand.WithWebpageCapture(),
 		stickyhand.WithLLMProvider("https://<llm-provider>/v1", "sk-xxxxx"))
 }
 ```
@@ -158,7 +158,7 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [x] Basic feature 
 - [x] Webpage Screenshotting
 - [x] Summarization
-- [x] Summarization
+- [x] Translation
 - [ ] Headless browser for complex scenario
 
 See the [open issues](https://github.com/RealAlexandreAI/sticky-hand/issues) for a full list of proposed features (and known issues).
