@@ -2,16 +2,11 @@
 
 ## Unreleased
 
-## v0.0.3
+## v0.0.4
 
 ### Features
 - Support Translation
 - Enhance CLI
-
-## v0.0.2
-
-### Features
-- Basic Features & CLI init
 
 ## v0.0.1
 
