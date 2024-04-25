@@ -131,6 +131,8 @@ Here's a brief description of each function:
 
 7. `WithLLMProvider(endpoint string, apiKey string)`: Takes two string parameters endpoint and apiKey, sets the llmEndpoint and llmAPIKey fields of StickyHand, and configures an openai client, likely for interaction with a Large Language Model (LLM).
 
+8. `WithTimeout(timeout int)`:  Configuration of Context.WithTimeout().
+
 
 _For more examples, please refer to the [Test Cases](https://github.com/RealAlexandreAI/sticky-hand/blob/master/main_test.go) Or <a href="https://goplay.tools/snippet/Xr04C_wjVeB">Online Playground</a>_
 

@@ -84,9 +84,9 @@ If necessary, ask for clarification on specific parts of the text to ensure accu
 
 Engage in a scholarly and formal tone, mirroring the style of academic papers, and provide translations that are academically rigorous.
 
-## Output format:
+## Thought steps:
 
-Please output strictly in the following format
+Please think strictly in the following steps
 
 ### Literal Translation
 {$LITERAL_TRANSLATION}
@@ -99,6 +99,10 @@ Please output strictly in the following format
 ***
 
 ### Free Translation
+{FREE_TRANSLATION}
+
+## Output format
+
 {FREE_TRANSLATION}
 
 Please translate the following content into {{ targetLang }}: 

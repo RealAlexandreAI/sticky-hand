@@ -27,11 +27,12 @@ import (
 func ScrapeURL(url string, opts ...Option) (string, error) {
 	var rst string
 	errS, ok := lo.TryWithErrorValue(func() error {
-		timeout := 30 * time.Second
+		scraper := NewScraper(opts...)
+
+		scraper.timeout = lo.Ternary(scraper.timeout <= 0, 60, scraper.timeout)
+		timeout := time.Duration(scraper.timeout) * time.Second
 		ctx, cancel := context.WithTimeout(context.Background(), timeout)
 		defer cancel()
-
-		scraper := NewScraper(opts...)
 
 		article, err := readability.FromURL(url, timeout)
 		if err != nil {
@@ -163,6 +164,7 @@ type StickyHand struct {
 type scraperConfig struct {
 	llmEndpoint string
 	llmAPIKey   string
+	timeout     int
 }
 
 // outputConfig
@@ -258,6 +260,16 @@ func WithLLMProvider(endpoint string, apiKey string) Option {
 
 		c := openai.NewClientWithConfig(config)
 		scraper.llmClient = c
+	}
+}
+
+// WithTimeout
+//
+//	@Description:
+//	@return Option
+func WithTimeout(timeout int) Option {
+	return func(scraper *StickyHand) {
+		scraper.timeout = timeout
 	}
 }
 
