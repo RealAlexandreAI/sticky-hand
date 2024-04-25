@@ -7,7 +7,7 @@ import (
 	stickyhand "github.com/RealAlexandreAI/sticky-hand"
 )
 
-const AppVersion = "0.0.2"
+const AppVersion = "0.0.3"
 
 var (
 	versionFlag bool
@@ -17,7 +17,7 @@ var (
 	html        bool
 	capture     bool
 	summary     bool
-	translation bool
+	translation string
 
 	llmEndpoint string
 	llmAPIKey   string
@@ -34,7 +34,7 @@ func init() {
 	flag.BoolVar(&html, "html", false, "With html output")
 	flag.BoolVar(&capture, "capture", false, "With capture output")
 	flag.BoolVar(&summary, "summary", false, "With summary output")
-	// flag.BoolVar(&translation, "translation", false, "With text output")
+	flag.StringVar(&translation, "translation", "English", "With translation output")
 
 	flag.StringVar(&llmEndpoint, "with-llm-endpoint", "", "With llm endpoint eg: https://<llm-provider>/v1")
 	flag.StringVar(&llmAPIKey, "with-llm-apikey", "", "With llm apikey eg: sk-xxxxx")
@@ -96,9 +96,13 @@ func main() {
 		options = append(options, stickyhand.WithLLMProvider(llmEndpoint, llmAPIKey))
 	}
 
+	if translation != "" {
+		options = append(options, stickyhand.WithTranslation(translation))
+	}
+
 	rst, err := stickyhand.ScrapeURL(targetUrl, options...)
 	if err != nil {
-		fmt.Println("stickyhand scrape error:", err)
+		fmt.Println("sticky-hand scrape error:", err)
 		return
 	}
 

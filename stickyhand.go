@@ -9,62 +9,13 @@ import (
 	"github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/RealAlexandreAI/json-repair"
 	"github.com/chromedp/chromedp"
+	"github.com/flosch/pongo2/v6"
 	"github.com/go-shiori/go-readability"
 	"github.com/samber/lo"
 	"github.com/sashabaranov/go-openai"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )
-
-const summarizePrompt = `
-Employing the ICIO framework, the following Few-shot instruction is structured as follows:
-
-**Instruction (I)**:
-Analyze the provided text and generate a JSON output that includes a title, a detailed summary, and a list of identified keywords.
-
-**Content (C)**:
-The passage for analysis will be presented below.
-
-**Intent (I)**:
-The aim is to identify the primary themes, insights, and specific keywords within the text, and to produce a title that succinctly represents the text's main idea, along with a detailed summary that encapsulates its comprehensive essence, with emphasis on the identified keywords.
-
-**Output (O)**:
-The expected output is in JSON format, with the following structure:
-
-{
-  "title": "A concise title that reflects the text's central theme",
-  "keywords": ["Keyword1", "Keyword2", "Keyword3"], // List of identified keywords
-  "detailed": "An extensive summary that elaborates on the text's content in detail, incorporating the identified keywords"
-}
-
-Examples:
-Below are examples illustrating the creation of a title, a detailed summary, and the identification of keywords from given text samples.
-
-Example 1:
-{
-  "text": "Insert the content of example text 1 here...",
-  "output": {
-    "title": "Example Title 1",
-    "keywords": ["Key1", "Concept1", "Theme1"],
-    "detailed": "Example detailed summary for text 1, highlighting the presence and relevance of Key1, Concept1, and Theme1..."
-  }
-}
-
-Example 2:
-{
-  "text": "Insert the content of example text 2 here...",
-  "output": {
-    "title": "Example Title 2",
-    "keywords": ["Key2", "Idea2", "Topic2"],
-    "detailed": "Example detailed summary for text 2, providing an in-depth overview and emphasizing Key2, Idea2, and Topic2..."
-  }
-}
-
-The text to be processed is located below the line.
-
----
-
-`
 
 // ScrapeURL
 //
@@ -158,6 +109,41 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			rst, _ = sjson.SetRaw(rst, "summary", summary)
 		}
 
+		if scraper.translation != "" && scraper.llmClient != nil {
+
+			tpl, err := pongo2.FromString(translatePrompt)
+			if err != nil {
+				return fmt.Errorf("compile translate prompt template error: %v", err)
+			}
+
+			out, err := tpl.Execute(pongo2.Context{"targetLang": scraper.translation})
+			if err != nil {
+				return fmt.Errorf("render translate prompt template error: %v", err)
+			}
+
+			prompt := out + gjson.Get(rst, "markdown").String()
+
+			resp, err := scraper.llmClient.CreateChatCompletion(
+				ctx,
+				openai.ChatCompletionRequest{
+					Model: openai.GPT3Dot5Turbo,
+					Messages: []openai.ChatCompletionMessage{
+						{
+							Role:    openai.ChatMessageRoleUser,
+							Content: prompt,
+						},
+					},
+				},
+			)
+			if err != nil {
+				return fmt.Errorf("ChatCompletion error: %v", err)
+			}
+
+			translation := resp.Choices[0].Message.Content
+
+			rst, _ = sjson.SetRaw(rst, "translation", translation)
+		}
+
 		return nil
 	})
 
@@ -187,7 +173,7 @@ type outputConfig struct {
 	html        bool
 	capture     bool
 	summary     bool
-	translation bool
+	translation string
 }
 
 type Option func(*StickyHand)
@@ -246,9 +232,10 @@ func WithSummary() Option {
 //
 //	@Description:
 //	@return Option
-func WithTranslation() Option {
+func WithTranslation(language string) Option {
 	return func(scraper *StickyHand) {
-		scraper.translation = true
+		scraper.markdown = true
+		scraper.translation = language
 	}
 }
 
