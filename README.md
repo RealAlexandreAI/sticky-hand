@@ -160,6 +160,8 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [x] Summarization
 - [x] Translation
 - [ ] Headless browser for complex scenario
+- [ ] Search API 
+- [ ] Proxy & fingerprints
 
 See the [open issues](https://github.com/RealAlexandreAI/sticky-hand/issues) for a full list of proposed features (and known issues).
 
