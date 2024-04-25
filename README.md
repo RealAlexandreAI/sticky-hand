@@ -51,7 +51,7 @@
 ## ✋ Fetch webpage content into structured text using crawlers or AI as your want.
 
 
-### 🌟 Reasons to Choose ticky-hand
+### 🌟 Reasons to Choose sticky-hand
 
 - 🛡️ Simplicity and Security: sticky-hand ensures ease of use and data security with its straightforward interface and robust data handling mechanisms.
 - 🏗️ Structured Results: With its powerful data parsing capabilities, it can convert unstructured data into structured formats for easy processing and analysis.
