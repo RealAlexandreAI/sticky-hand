@@ -7,7 +7,7 @@ import (
 	stickyhand "github.com/RealAlexandreAI/sticky-hand"
 )
 
-const AppVersion = "0.0.4"
+const AppVersion = "0.0.5"
 
 var (
 	versionFlag bool
@@ -17,6 +17,7 @@ var (
 	html        bool
 	capture     bool
 	summary     bool
+	mindmap     bool
 	translation string
 
 	llmEndpoint string
@@ -34,6 +35,7 @@ func init() {
 	flag.BoolVar(&html, "html", false, "With html output")
 	flag.BoolVar(&capture, "capture", false, "With capture output")
 	flag.BoolVar(&summary, "summary", false, "With summary output")
+	flag.BoolVar(&summary, "mindmap", false, "With mindmap output")
 	flag.StringVar(&translation, "translation", "English", "With translation output")
 
 	flag.StringVar(&llmEndpoint, "with-llm-endpoint", "", "With llm endpoint eg: https://<llm-provider>/v1")
@@ -90,6 +92,10 @@ func main() {
 
 	if summary {
 		options = append(options, stickyhand.WithSummary())
+	}
+
+	if mindmap {
+		options = append(options, stickyhand.WithMindMap())
 	}
 
 	if llmAPIKey != "" {

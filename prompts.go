@@ -109,3 +109,14 @@ Please translate the following content into {{ targetLang }}:
 
 
 `
+
+const mermaidPrompt = `
+Using the triplet structure to extract the core information of the article, a structured graphic in the form of a knowledge map is formed and represented with mermaid.
+
+Requirements: Output the final mermaid code block without any content outside of the code block.
+
+Content to be analyzed is below the line.
+
+---
+
+`

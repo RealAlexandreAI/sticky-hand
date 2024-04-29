@@ -2,8 +2,8 @@ github.com/JohannesKaufmann/html-to-markdown v1.5.0 h1:cEAcqpxk0hUJOXEVGrgILGW76
 github.com/JohannesKaufmann/html-to-markdown v1.5.0/go.mod h1:QTO/aTyEDukulzu269jY0xiHeAGsNxmuUBo2Q0hPsK8=
 github.com/PuerkitoBio/goquery v1.8.1 h1:uQxhNlArOIdbrH1tr0UXwdVFgDcZDrZVdcpygAcwmWM=
 github.com/PuerkitoBio/goquery v1.8.1/go.mod h1:Q8ICL1kNUJ2sXGoAhPGUdYDJvgQgHzJsnnd3H7Ho5jQ=
-github.com/RealAlexandreAI/json-repair v0.0.5 h1:ywYxpQ6UdfP2TN0URM0d5dwbskGcq52/mc9kqU1Wlys=
-github.com/RealAlexandreAI/json-repair v0.0.5/go.mod h1:aNV5T8JGx69HG8bQeKHHtdTk0WRofuQJoV9SGzeJYwc=
+github.com/RealAlexandreAI/json-repair v0.0.7 h1:FekqPNX8S4gPM7YeWqVIdKhoWarvTYTfurePoe32e9M=
+github.com/RealAlexandreAI/json-repair v0.0.7/go.mod h1:qF9rGM2k29iTJXPkqJiDL29LyQ9yFBTY7zNMfdr0eWc=
 github.com/andybalholm/cascadia v1.2.0/go.mod h1:YCyR8vOZT9aZ1CHEd8ap0gMVm2aFgxBp0T0eFw1RUQY=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
 github.com/andybalholm/cascadia v1.3.2 h1:3Xi6Dw5lHF15JtdcmAHD3i1+T8plmv7BQ/nsViSLyss=
@@ -50,8 +50,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/samber/lo v1.39.0 h1:4gTz1wUhNYLhFSKl6O+8peW0v2F4BCY034GRpU9WnuA=
 github.com/samber/lo v1.39.0/go.mod h1:+m/ZKRl6ClXCE2Lgf3MsQlWfh4bn1bz6CXEOxnEXnEA=
-github.com/sashabaranov/go-openai v1.22.0 h1:bjYkELQCbOBMW9B7zi/KA5L4syPfn/3qRvUoyV49Fvs=
-github.com/sashabaranov/go-openai v1.22.0/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
+github.com/sashabaranov/go-openai v1.23.0 h1:KYW97r5yc35PI2MxeLZ3OofecB/6H+yxvSNqiT9u8is=
+github.com/sashabaranov/go-openai v1.23.0/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
 github.com/sebdah/goldie/v2 v2.5.3 h1:9ES/mNN+HNUbNWpVAlrzuZ7jE+Nrczbj8uFRjM7624Y=
 github.com/sebdah/goldie/v2 v2.5.3/go.mod h1:oZ9fp0+se1eapSRjfYbsV/0Hqhbuu3bJVvKI/NNtssI=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=

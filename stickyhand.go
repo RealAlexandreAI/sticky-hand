@@ -105,7 +105,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			}
 
 			summary := resp.Choices[0].Message.Content
-			summary = jsonrepair.RepairJSON(summary)
+			summary = jsonrepair.MustRepairJSON(summary)
 
 			rst, _ = sjson.SetRaw(rst, "summary", summary)
 		}
@@ -137,12 +137,37 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				},
 			)
 			if err != nil {
-				return fmt.Errorf("ChatCompletion error: %v", err)
+				return fmt.Errorf("chat completion error: %v", err)
 			}
 
 			translation := resp.Choices[0].Message.Content
 
 			rst, _ = sjson.SetRaw(rst, "translation", translation)
+		}
+
+		if scraper.mindmap && scraper.llmClient != nil {
+
+			prompt := mermaidPrompt + gjson.Get(rst, "markdown").String()
+
+			resp, err := scraper.llmClient.CreateChatCompletion(
+				ctx,
+				openai.ChatCompletionRequest{
+					Model: openai.GPT3Dot5Turbo,
+					Messages: []openai.ChatCompletionMessage{
+						{
+							Role:    openai.ChatMessageRoleUser,
+							Content: prompt,
+						},
+					},
+				},
+			)
+			if err != nil {
+				return fmt.Errorf("mermaid analyse error: %v", err)
+			}
+
+			mermaid := resp.Choices[0].Message.Content
+
+			rst, _ = sjson.SetRaw(rst, "mermaid", mermaid)
 		}
 
 		return nil
@@ -175,6 +200,7 @@ type outputConfig struct {
 	html        bool
 	capture     bool
 	summary     bool
+	mindmap     bool
 	translation string
 }
 
@@ -270,6 +296,16 @@ func WithLLMProvider(endpoint string, apiKey string) Option {
 func WithTimeout(timeout int) Option {
 	return func(scraper *StickyHand) {
 		scraper.timeout = timeout
+	}
+}
+
+// WithMindMap
+//
+//	@Description:
+//	@return Option
+func WithMindMap() Option {
+	return func(scraper *StickyHand) {
+		scraper.mindmap = true
 	}
 }
 
