@@ -223,6 +223,7 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [x] Summarization
 - [x] Translation
 - [x] Mindmap or Mermaid
+- [ ] Parallelism
 - [ ] Headless browser for complex scenario
 - [ ] Search API 
 - [ ] Proxy & fingerprints
