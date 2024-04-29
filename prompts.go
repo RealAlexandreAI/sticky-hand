@@ -111,7 +111,7 @@ Please translate the following content into {{ targetLang }}:
 `
 
 const mermaidPrompt = `
-Using the triplet structure to extract the core information of the article, a structured graphic in the form of a knowledge map is formed and represented with mermaid.
+Using the triplet structure to extract the core information of the article, a structured graphic in the form of a knowledge map is formed and represented with mermaid in a single line.
 
 Requirements: Output the final mermaid code block without any content outside of the code block.
 

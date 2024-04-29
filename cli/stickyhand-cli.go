@@ -7,7 +7,7 @@ import (
 	stickyhand "github.com/RealAlexandreAI/sticky-hand"
 )
 
-const AppVersion = "0.0.5"
+const AppVersion = "0.0.6"
 
 var (
 	versionFlag bool

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v0.0.6
+
+### Features
+- Enhance mermaid prompt
+
 ## v0.0.5
 
 ### Features
