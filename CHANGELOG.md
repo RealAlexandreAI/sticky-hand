@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v0.0.5
+
+### Features
+- Enhance README
+- Add golangci-lint
+- MindMap support
+
 ## v0.0.4
 
 ### Features
