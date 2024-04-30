@@ -68,7 +68,7 @@
  <summary>MindMap or Mermaid summary support.</summary> 
 Using the triplet structure to extract the core information of the article, a structured graphic in the form of a knowledge map
     <a href="https://github.com/RealAlexandreAI/sticky-hand">
-    <img src="images/mindmap.png" alt="Logo" width="640" height="180">
+    <img src="images/mindmap.png" alt="Logo">
   </a>
 
 ---
