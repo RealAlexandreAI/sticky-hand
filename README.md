@@ -36,7 +36,7 @@
 <h3 align="center">sticky-hand</h3>
 
   <p align="center">
-    Fetch webpage content into structured text using crawlers or AI as your want.
+    URL to JSON! Fetch webpage content into structured text using crawlers or AI as your want.
     <br />
     <a href="https://goplay.tools/snippet/Xr04C_wjVeB">Online Playground</a>
     ·
@@ -48,7 +48,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## ✋ Fetch webpage content into structured text using crawlers or AI as your want.
+## ✋ URL to JSON! Fetch webpage content into structured text using crawlers or AI as your want.
 
 
 ### 🌟 Reasons to Choose sticky-hand
