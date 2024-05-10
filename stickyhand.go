@@ -51,7 +51,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			rst, _ = sjson.Set(rst, "html", article.Content)
 		}
 
-		if scraper.markdown {
+		if scraper.markdown || (scraper.summary || scraper.translation != "" || scraper.mindmap) {
 
 			converter := md.NewConverter("", true, nil)
 			markdown, err := converter.ConvertString(article.Content)
@@ -84,90 +84,93 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			rst, _ = sjson.Set(rst, "capture", base64Str)
 		}
 
-		if scraper.summary && scraper.llmClient != nil {
+		if scraper.llmClient != nil {
 
-			prompt := summarizePrompt + gjson.Get(rst, "markdown").String()
+			if scraper.summary {
 
-			resp, err := scraper.llmClient.CreateChatCompletion(
-				ctx,
-				openai.ChatCompletionRequest{
-					Model: openai.GPT3Dot5Turbo,
-					Messages: []openai.ChatCompletionMessage{
-						{
-							Role:    openai.ChatMessageRoleUser,
-							Content: prompt,
+				prompt := summarizePrompt + gjson.Get(rst, "markdown").String()
+
+				resp, err := scraper.llmClient.CreateChatCompletion(
+					ctx,
+					openai.ChatCompletionRequest{
+						Model: openai.GPT3Dot5Turbo,
+						Messages: []openai.ChatCompletionMessage{
+							{
+								Role:    openai.ChatMessageRoleUser,
+								Content: prompt,
+							},
 						},
 					},
-				},
-			)
-			if err != nil {
-				return fmt.Errorf("ChatCompletion error: %v", err)
+				)
+				if err != nil {
+					return fmt.Errorf("ChatCompletion error: %v", err)
+				}
+
+				summary := resp.Choices[0].Message.Content
+				summary = jsonrepair.MustRepairJSON(summary)
+
+				rst, _ = sjson.SetRaw(rst, "summary", summary)
 			}
 
-			summary := resp.Choices[0].Message.Content
-			summary = jsonrepair.MustRepairJSON(summary)
+			if scraper.translation != "" {
 
-			rst, _ = sjson.SetRaw(rst, "summary", summary)
-		}
+				tpl, err := pongo2.FromString(translatePrompt)
+				if err != nil {
+					return fmt.Errorf("compile translate prompt template error: %v", err)
+				}
 
-		if scraper.translation != "" && scraper.llmClient != nil {
+				out, err := tpl.Execute(pongo2.Context{"targetLang": scraper.translation})
+				if err != nil {
+					return fmt.Errorf("render translate prompt template error: %v", err)
+				}
 
-			tpl, err := pongo2.FromString(translatePrompt)
-			if err != nil {
-				return fmt.Errorf("compile translate prompt template error: %v", err)
-			}
+				prompt := out + gjson.Get(rst, "markdown").String()
 
-			out, err := tpl.Execute(pongo2.Context{"targetLang": scraper.translation})
-			if err != nil {
-				return fmt.Errorf("render translate prompt template error: %v", err)
-			}
-
-			prompt := out + gjson.Get(rst, "markdown").String()
-
-			resp, err := scraper.llmClient.CreateChatCompletion(
-				ctx,
-				openai.ChatCompletionRequest{
-					Model: openai.GPT3Dot5Turbo,
-					Messages: []openai.ChatCompletionMessage{
-						{
-							Role:    openai.ChatMessageRoleUser,
-							Content: prompt,
+				resp, err := scraper.llmClient.CreateChatCompletion(
+					ctx,
+					openai.ChatCompletionRequest{
+						Model: openai.GPT3Dot5Turbo,
+						Messages: []openai.ChatCompletionMessage{
+							{
+								Role:    openai.ChatMessageRoleUser,
+								Content: prompt,
+							},
 						},
 					},
-				},
-			)
-			if err != nil {
-				return fmt.Errorf("chat completion error: %v", err)
+				)
+				if err != nil {
+					return fmt.Errorf("chat completion error: %v", err)
+				}
+
+				translation := resp.Choices[0].Message.Content
+
+				rst, _ = sjson.SetRaw(rst, "translation", translation)
 			}
 
-			translation := resp.Choices[0].Message.Content
+			if scraper.mindmap {
 
-			rst, _ = sjson.SetRaw(rst, "translation", translation)
-		}
+				prompt := mermaidPrompt + gjson.Get(rst, "markdown").String()
 
-		if scraper.mindmap && scraper.llmClient != nil {
-
-			prompt := mermaidPrompt + gjson.Get(rst, "markdown").String()
-
-			resp, err := scraper.llmClient.CreateChatCompletion(
-				ctx,
-				openai.ChatCompletionRequest{
-					Model: openai.GPT3Dot5Turbo,
-					Messages: []openai.ChatCompletionMessage{
-						{
-							Role:    openai.ChatMessageRoleUser,
-							Content: prompt,
+				resp, err := scraper.llmClient.CreateChatCompletion(
+					ctx,
+					openai.ChatCompletionRequest{
+						Model: openai.GPT3Dot5Turbo,
+						Messages: []openai.ChatCompletionMessage{
+							{
+								Role:    openai.ChatMessageRoleUser,
+								Content: prompt,
+							},
 						},
 					},
-				},
-			)
-			if err != nil {
-				return fmt.Errorf("mermaid analyse error: %v", err)
+				)
+				if err != nil {
+					return fmt.Errorf("mermaid analyse error: %v", err)
+				}
+
+				mermaid := resp.Choices[0].Message.Content
+
+				rst, _ = sjson.SetRaw(rst, "mermaid", mermaid)
 			}
-
-			mermaid := resp.Choices[0].Message.Content
-
-			rst, _ = sjson.SetRaw(rst, "mermaid", mermaid)
 		}
 
 		return nil

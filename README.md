@@ -223,10 +223,13 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [x] Summarization
 - [x] Translation
 - [x] Mindmap or Mermaid
-- [ ] Parallelism
+- [ ] Add Struct Output option, not only string
+- [ ] Parallelism from `katana`
 - [ ] Headless browser for complex scenario
-- [ ] Search API 
+- [ ] Search API from Search2ai、Apify、Crawlbase or ArchiveBox
 - [ ] Proxy & fingerprints
+- [ ] Token Usage from tiktoken-go offline
+- [ ] Refer to more mature web crawlers, such as Playwright and crawl4ai
 
 See the [open issues](https://github.com/RealAlexandreAI/sticky-hand/issues) for a full list of proposed features (and known issues).
 
