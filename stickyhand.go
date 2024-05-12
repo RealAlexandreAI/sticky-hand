@@ -8,6 +8,7 @@ import (
 
 	"github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/RealAlexandreAI/json-repair"
+	"github.com/bytedance/sonic"
 	"github.com/chromedp/chromedp"
 	"github.com/flosch/pongo2/v6"
 	"github.com/go-shiori/go-readability"
@@ -88,7 +89,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 
 			if scraper.summary {
 
-				prompt := summarizePrompt + gjson.Get(rst, "markdown").String()
+				prompt := summarizePrompt_ICIO + gjson.Get(rst, "markdown").String()
 
 				resp, err := scraper.llmClient.CreateChatCompletion(
 					ctx,
@@ -177,6 +178,57 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 	})
 
 	return rst, lo.Ternary(ok, nil, fmt.Errorf("failed to scrape %s, %v", url, errS))
+}
+
+// ScrapeURLToStruct
+//
+//	@Description:
+//	@param url
+//	@param opts
+//	@return StructuredOutput
+//	@return error
+func ScrapeURLToStruct(url string, opts ...Option) (*StructuredOutput, error) {
+
+	rstStr, err := ScrapeURL(url, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	var rst StructuredOutput
+	if err := sonic.UnmarshalString(rstStr, &rst); err != nil {
+		return nil, err
+	}
+
+	return &rst, nil
+}
+
+// StructuredOutput
+// @Description:
+type StructuredOutput struct {
+	Metadata    Metadata `json:"metadata,omitempty"`
+	Text        string   `json:"text,omitempty"`
+	HTML        string   `json:"html,omitempty"`
+	Markdown    string   `json:"markdown,omitempty"`
+	Capture     string   `json:"capture,omitempty"`
+	Summary     Summary  `json:"summary,omitempty"`
+	Translation string   `json:"translation,omitempty"`
+	Mindmap     string   `json:"mindmap,omitempty"`
+}
+
+// Metadata
+// @Description:
+type Metadata struct {
+	Title    string `json:"title"`
+	SiteName string `json:"siteName"`
+	Length   int    `json:"length"`
+}
+
+// Summary
+// @Description:
+type Summary struct {
+	Title    string   `json:"title"`
+	Keywords []string `json:"keywords"`
+	Detailed string   `json:"detailed"`
 }
 
 // StickyHand

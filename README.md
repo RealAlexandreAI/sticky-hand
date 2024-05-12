@@ -223,7 +223,7 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [x] Summarization
 - [x] Translation
 - [x] Mindmap or Mermaid
-- [ ] Add Struct Output option, not only string
+- [x] Add Struct Output option, not only string
 - [ ] Parallelism from `katana`
 - [ ] Headless browser for complex scenario
 - [ ] Search API from Search2ai、Apify、Crawlbase or ArchiveBox
