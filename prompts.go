@@ -50,7 +50,7 @@ The text to be processed is located below the line.
 
 `
 
-//nolint
+// nolint
 const summarizePrompt_CO_STAR = `
 Employing the CO-STAR framework, the following Few-shot instruction is structured as follows:
 

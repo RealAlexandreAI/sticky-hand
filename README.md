@@ -229,8 +229,8 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [ ] Search API from Search2ai、Apify、Crawlbase or ArchiveBox
 - [ ] Proxy & fingerprints
 - [ ] Token Usage from tiktoken-go offline
-- [ ] Support CO-STAR
-- [ ] Refer to more mature web crawlers, such as Playwright and crawl4ai
+- [x] Support CO-STAR
+- [ ] Refer to more mature web crawlers, such as Playwright, crawl4ai, jsondr
 
 See the [open issues](https://github.com/RealAlexandreAI/sticky-hand/issues) for a full list of proposed features (and known issues).
 
