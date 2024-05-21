@@ -18,6 +18,8 @@ import (
 	"github.com/tidwall/sjson"
 )
 
+const optsInPlace = &sjson.Options{Optimistic: true, ReplaceInPlace: true}
+
 // ScrapeURL
 //
 //	@Description:
@@ -40,16 +42,16 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			return fmt.Errorf("readability failed to parse %s, %v", url, err)
 		}
 
-		rst, _ = sjson.Set(rst, "metadata.title", article.Title)
-		rst, _ = sjson.Set(rst, "metadata.siteName", article.SiteName)
-		rst, _ = sjson.Set(rst, "metadata.length", article.Length)
+		rst, _ = sjson.SetOptions(rst, "metadata.title", article.Title, optsInPlace)
+		rst, _ = sjson.SetOptions(rst, "metadata.siteName", article.SiteName, optsInPlace)
+		rst, _ = sjson.SetOptions(rst, "metadata.length", article.Length, optsInPlace)
 
 		if scraper.text {
-			rst, _ = sjson.Set(rst, "text", article.TextContent)
+			rst, _ = sjson.SetOptions(rst, "text", article.TextContent, optsInPlace)
 		}
 
 		if scraper.html {
-			rst, _ = sjson.Set(rst, "html", article.Content)
+			rst, _ = sjson.SetOptions(rst, "html", article.Content, optsInPlace)
 		}
 
 		if scraper.markdown || (scraper.summary || scraper.translation != "" || scraper.mindmap) {
@@ -60,7 +62,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				return fmt.Errorf("failed to html-to-markdown %s, %v", url, err)
 			}
 
-			rst, _ = sjson.Set(rst, "markdown", markdown)
+			rst, _ = sjson.SetOptions(rst, "markdown", markdown, optsInPlace)
 		}
 
 		if scraper.capture {
@@ -82,7 +84,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 			}
 
 			base64Str := base64.StdEncoding.EncodeToString(buf)
-			rst, _ = sjson.Set(rst, "capture", base64Str)
+			rst, _ = sjson.SetOptions(rst, "capture", base64Str, optsInPlace)
 		}
 
 		if scraper.llmClient != nil {
@@ -110,7 +112,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				summary := resp.Choices[0].Message.Content
 				summary = jsonrepair.MustRepairJSON(summary)
 
-				rst, _ = sjson.SetRaw(rst, "summary", summary)
+				rst, _ = sjson.SetRawOptions(rst, "summary", summary, optsInPlace)
 			}
 
 			if scraper.translation != "" {
@@ -145,7 +147,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 
 				translation := resp.Choices[0].Message.Content
 
-				rst, _ = sjson.SetRaw(rst, "translation", translation)
+				rst, _ = sjson.SetRawOptions(rst, "translation", translation, optsInPlace)
 			}
 
 			if scraper.mindmap {
@@ -170,7 +172,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 
 				mermaid := resp.Choices[0].Message.Content
 
-				rst, _ = sjson.SetRaw(rst, "mermaid", mermaid)
+				rst, _ = sjson.SetRawOptions(rst, "mermaid", mermaid, optsInPlace)
 			}
 		}
 
