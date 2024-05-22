@@ -18,7 +18,7 @@ import (
 	"github.com/tidwall/sjson"
 )
 
-const optsInPlace = &sjson.Options{Optimistic: true, ReplaceInPlace: true}
+var optsInPlace = &sjson.Options{Optimistic: true, ReplaceInPlace: true}
 
 // ScrapeURL
 //
