@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.5.0
 	github.com/RealAlexandreAI/json-repair v0.0.7
-	github.com/bytedance/sonic v1.11.6
+	github.com/bytedance/sonic v1.11.7
 	github.com/chromedp/chromedp v0.9.5
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-shiori/go-readability v0.0.0-20240204090920-819593fddc6b
