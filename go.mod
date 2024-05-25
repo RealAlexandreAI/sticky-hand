@@ -3,7 +3,7 @@ module github.com/RealAlexandreAI/sticky-hand
 go 1.20
 
 require (
-	github.com/JohannesKaufmann/html-to-markdown v1.5.0
+	github.com/JohannesKaufmann/html-to-markdown v1.6.0
 	github.com/RealAlexandreAI/json-repair v0.0.7
 	github.com/bytedance/sonic v1.11.7
 	github.com/chromedp/chromedp v0.9.5
@@ -17,7 +17,7 @@ require (
 )
 
 require (
-	github.com/PuerkitoBio/goquery v1.8.1 // indirect
+	github.com/PuerkitoBio/goquery v1.9.2 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/chromedp/cdproto v0.0.0-20240202021202-6d0b6a386732 // indirect
@@ -39,8 +39,8 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17 // indirect
-	golang.org/x/net v0.23.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
