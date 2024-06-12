@@ -99,7 +99,7 @@ func main() {
 	}
 
 	if llmAPIKey != "" {
-		options = append(options, stickyhand.WithLLMProvider(llmEndpoint, llmAPIKey))
+		options = append(options, stickyhand.WithLLMProvider(llmEndpoint, llmAPIKey, ""))
 	}
 
 	if translation != "" {
