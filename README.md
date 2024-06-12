@@ -141,7 +141,7 @@ func main() {
 		stickyhand.WithHTML(), stickyhand.WithMarkdown(), stickyhand.WithSummary(),
 		stickyhand.WithText(), stickyhand.WithTranslation("Japanese"), stickyhand.WithWebpageCapture(),
 		stickyhand.WithMindMap(),
-		stickyhand.WithLLMProvider("https://<llm-provider>/v1", "sk-xxxxx"))
+		stickyhand.WithLLMProvider("https://<llm-provider>/v1", "sk-xxxxx", "gpt-3.5-turbo"))
 }
 ```
 
@@ -190,7 +190,7 @@ Here's a brief description of each function:
 
 6. `WithTranslation(language string)`: (LLM Required) Takes a string parameter in and sets the translation field of StickyHand, likely specifying the target language for translation.
 
-7. `WithLLMProvider(endpoint string, apiKey string)`: Takes two string parameters endpoint and apiKey, sets the llmEndpoint and llmAPIKey fields of StickyHand, and configures an openai client, likely for interaction with a Large Language Model (LLM).
+7. `WithLLMProvider(endpoint, apiKey, model string)`: Takes string parameters endpoint, apiKey and model, sets the llmEndpoint and llmAPIKey fields of StickyHand, and configures an openai client, likely for interaction with a Large Language Model (LLM). llmModel refs to [supported models](https://github.com/sashabaranov/go-openai/blob/master/completion.go).
 
 8. `WithTimeout(timeout int)`:  Configuration of Context.WithTimeout().
 
@@ -228,7 +228,6 @@ _You can also download binary from Release, please refer to the [Releases](https
 - [ ] Headless browser for complex scenario
 - [ ] Search API from Search2ai、Apify、Crawlbase or ArchiveBox
 - [ ] Proxy & fingerprints
-- [ ] Token Usage from tiktoken-go offline
 - [x] Support CO-STAR
 - [ ] Refer to more mature web crawlers, such as Playwright, crawl4ai, jsondr
 

@@ -96,7 +96,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				resp, err := scraper.llmClient.CreateChatCompletion(
 					ctx,
 					openai.ChatCompletionRequest{
-						Model: openai.GPT3Dot5Turbo,
+						Model: scraper.llmModel,
 						Messages: []openai.ChatCompletionMessage{
 							{
 								Role:    openai.ChatMessageRoleUser,
@@ -132,7 +132,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				resp, err := scraper.llmClient.CreateChatCompletion(
 					ctx,
 					openai.ChatCompletionRequest{
-						Model: openai.GPT3Dot5Turbo,
+						Model: scraper.llmModel,
 						Messages: []openai.ChatCompletionMessage{
 							{
 								Role:    openai.ChatMessageRoleUser,
@@ -157,7 +157,7 @@ func ScrapeURL(url string, opts ...Option) (string, error) {
 				resp, err := scraper.llmClient.CreateChatCompletion(
 					ctx,
 					openai.ChatCompletionRequest{
-						Model: openai.GPT3Dot5Turbo,
+						Model: scraper.llmModel,
 						Messages: []openai.ChatCompletionMessage{
 							{
 								Role:    openai.ChatMessageRoleUser,
@@ -246,6 +246,7 @@ type StickyHand struct {
 type scraperConfig struct {
 	llmEndpoint string
 	llmAPIKey   string
+	llmModel    string
 	timeout     int
 }
 
@@ -330,10 +331,15 @@ func WithTranslation(language string) Option {
 //	@param endpoint
 //	@param apiKey
 //	@return Option
-func WithLLMProvider(endpoint string, apiKey string) Option {
+func WithLLMProvider(endpoint, apiKey, model string) Option {
 	return func(scraper *StickyHand) {
 		scraper.llmEndpoint = endpoint
 		scraper.llmAPIKey = apiKey
+
+		scraper.llmModel = openai.GPT3Dot5Turbo
+		if model != "" {
+			scraper.llmModel = model
+		}
 
 		config := openai.DefaultConfig(apiKey)
 
