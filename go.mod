@@ -5,13 +5,13 @@ go 1.20
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.6.0
 	github.com/RealAlexandreAI/json-repair v0.0.7
-	github.com/bytedance/sonic v1.12.3
 	github.com/chromedp/chromedp v0.11.2
+	github.com/bytedance/sonic v1.12.6
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-shiori/go-readability v0.0.0-20240204090920-819593fddc6b
 	github.com/samber/lo v1.47.0
-	github.com/sashabaranov/go-openai v1.32.3
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
+	github.com/sashabaranov/go-openai v1.36.0
 	github.com/tidwall/gjson v1.18.0
 	github.com/tidwall/sjson v1.2.5
 )
