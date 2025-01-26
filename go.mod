@@ -5,13 +5,13 @@ go 1.20
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.6.0
 	github.com/RealAlexandreAI/json-repair v0.0.7
-	github.com/chromedp/chromedp v0.11.2
 	github.com/bytedance/sonic v1.12.6
+	github.com/chromedp/chromedp v0.12.1
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-shiori/go-readability v0.0.0-20240204090920-819593fddc6b
 	github.com/samber/lo v1.47.0
-	github.com/stretchr/testify v1.10.0
 	github.com/sashabaranov/go-openai v1.36.0
+	github.com/stretchr/testify v1.10.0
 	github.com/tidwall/gjson v1.18.0
 	github.com/tidwall/sjson v1.2.5
 )
@@ -20,7 +20,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.9.2 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/bytedance/sonic/loader v0.2.0 // indirect
-	github.com/chromedp/cdproto v0.0.0-20241022234722-4d5d5faf59fb // indirect
+	github.com/chromedp/cdproto v0.0.0-20250120090109-d38428e4d9c8 // indirect
 	github.com/chromedp/sysutil v1.1.0 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
@@ -32,14 +32,14 @@ require (
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
-	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/mailru/easyjson v0.9.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/net v0.25.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
