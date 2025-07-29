@@ -11,7 +11,7 @@ require (
 	github.com/chromedp/chromedp v0.14.0
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-shiori/go-readability v0.0.0-20240204090920-819593fddc6b
-	github.com/samber/lo v1.49.1
+	github.com/samber/lo v1.51.0
 	github.com/sashabaranov/go-openai v1.36.0
 	github.com/stretchr/testify v1.10.0
 	github.com/tidwall/gjson v1.18.0
