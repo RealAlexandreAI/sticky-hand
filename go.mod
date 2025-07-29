@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.6.0
-	github.com/RealAlexandreAI/json-repair v0.0.7
+	github.com/RealAlexandreAI/json-repair v0.0.14
 	github.com/sashabaranov/go-openai v1.40.5
 	github.com/bytedance/sonic v1.14.0
 	github.com/chromedp/chromedp v0.14.0
@@ -21,6 +21,8 @@ require (
 require (
 	github.com/PuerkitoBio/goquery v1.9.2 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
+	github.com/bytedance/sonic/loader v0.2.4 // indirect
+	github.com/chromedp/cdproto v0.0.0-20250319231242-a755498943c8 // indirect
 	github.com/chromedp/cdproto v0.0.0-20250319231242-a755498943c8 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/chromedp/sysutil v1.1.0 // indirect
