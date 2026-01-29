@@ -1,8 +1,6 @@
 module github.com/RealAlexandreAI/sticky-hand
 
-go 1.24
-
-toolchain go1.24.1
+go 1.25
 
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.6.0

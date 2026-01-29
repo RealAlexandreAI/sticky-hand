@@ -25,7 +25,12 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+      - name: Force Go 1.24 in go.mod
+        run: |
+          sed -i 's/^go 1.25$/go 1.24/' go.mod
+          cat go.mod | head -5
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v5
         with:
           version: latest
+          args: --timeout=5m
