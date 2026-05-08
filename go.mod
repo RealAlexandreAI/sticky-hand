@@ -12,7 +12,7 @@ require (
 	github.com/samber/lo v1.52.0
 	github.com/sashabaranov/go-openai v1.41.2
 	github.com/stretchr/testify v1.10.0
-	github.com/tidwall/gjson v1.18.0
+	github.com/tidwall/gjson v1.19.0
 	github.com/tidwall/sjson v1.2.5
 )
 
