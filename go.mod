@@ -7,7 +7,7 @@ require (
 	github.com/RealAlexandreAI/json-repair v0.0.15
 	github.com/bytedance/sonic v1.15.1
 	github.com/chromedp/chromedp v0.15.1
-	github.com/flosch/pongo2/v6 v6.0.0
+	github.com/flosch/pongo2/v6 v6.1.0
 	github.com/go-shiori/go-readability v0.0.0-20251205110129-5db1dc9836f0
 	github.com/samber/lo v1.53.0
 	github.com/sashabaranov/go-openai v1.41.2
