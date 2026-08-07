@@ -5,9 +5,9 @@ go 1.26
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.6.0
 	github.com/RealAlexandreAI/json-repair v0.0.15
-	github.com/bytedance/sonic v1.15.0
+	github.com/bytedance/sonic v1.15.2
 	github.com/chromedp/chromedp v0.15.1
-	github.com/flosch/pongo2/v6 v6.0.0
+	github.com/flosch/pongo2/v6 v6.1.0
 	github.com/go-shiori/go-readability v0.0.0-20251205110129-5db1dc9836f0
 	github.com/samber/lo v1.53.0
 	github.com/sashabaranov/go-openai v1.41.2
@@ -21,7 +21,7 @@ require (
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/araddon/dateparse v0.0.0-20210429162001-6b43995a97de // indirect
 	github.com/bytedance/gopkg v0.1.3 // indirect
-	github.com/bytedance/sonic/loader v0.5.0 // indirect
+	github.com/bytedance/sonic/loader v0.5.1 // indirect
 	github.com/chromedp/cdproto v0.0.0-20260321001828-e3e3800016bc // indirect
 	github.com/chromedp/sysutil v1.1.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
@@ -38,8 +38,8 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	golang.org/x/arch v0.23.0 // indirect
-	golang.org/x/net v0.55.0 // indirect
-	golang.org/x/sys v0.45.0 // indirect
-	golang.org/x/text v0.37.0 // indirect
+	golang.org/x/net v0.49.0 // indirect
+	golang.org/x/sys v0.42.0 // indirect
+	golang.org/x/text v0.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
