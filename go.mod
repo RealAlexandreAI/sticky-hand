@@ -10,7 +10,7 @@ require (
 	github.com/flosch/pongo2/v6 v6.1.0
 	github.com/go-shiori/go-readability v0.0.0-20251205110129-5db1dc9836f0
 	github.com/samber/lo v1.53.0
-	github.com/sashabaranov/go-openai v1.41.2
+	github.com/sashabaranov/go-openai v1.42.0
 	github.com/stretchr/testify v1.10.0
 	github.com/tidwall/gjson v1.19.0
 	github.com/tidwall/sjson v1.2.5
