@@ -11,7 +11,7 @@ require (
 	github.com/go-shiori/go-readability v0.0.0-20251205110129-5db1dc9836f0
 	github.com/samber/lo v1.53.0
 	github.com/sashabaranov/go-openai v1.42.0
-	github.com/stretchr/testify v1.12.0
+	github.com/stretchr/testify v1.12.1
 	github.com/tidwall/gjson v1.19.0
 	github.com/tidwall/sjson v1.2.5
 )
@@ -35,9 +35,9 @@ require (
 	github.com/tidwall/match v1.2.0 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/arch v0.23.0 // indirect
 	golang.org/x/net v0.49.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.33.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
